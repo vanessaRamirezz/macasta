@@ -1,0 +1,110 @@
+{
+    "identificacion": {
+        "version": 1,
+        "ambiente": "01",
+        "tipoDte": "01",
+        "numeroControl": "DTE-01-00010001-000000000000008",
+        "codigoGeneracion": "E76C8A84-98B9-43F5-A711-963366A025C8",
+        "tipoModelo": 1,
+        "tipoOperacion": 1,
+        "tipoContingencia": null,
+        "motivoContin": null,
+        "fecEmi": "2025-07-21",
+        "horEmi": "13:49:12",
+        "tipoMoneda": "USD"
+    },
+    "documentoRelacionado": null,
+    "emisor": {
+        "nit": "02101205171019",
+        "nrc": "2603130",
+        "nombre": "Macasta, Servicios de ingeniería",
+        "codActividad": "71102",
+        "descActividad": "Servicios de ingeniería",
+        "nombreComercial": "Macasta, Servicios de ingeniería",
+        "tipoEstablecimiento": "02",
+        "direccion": {
+            "departamento": "02",
+            "municipio": "15",
+            "complemento": "Block C, URB. San Dionicio, Lote 7 y 8"
+        },
+        "telefono": "77067472",
+        "correo": "Facturamacasta24@hotmail.com",
+        "codEstableMH": null,
+        "codEstable": null,
+        "codPuntoVentaMH": null,
+        "codPuntoVenta": null
+    },
+    "receptor": {
+        "tipoDocumento": "null",
+        "numDocumento": null,
+        "nrc": "1629212",
+        "nombre": "MILLOT CORPORATION SA DE CV",
+        "codActividad": "68109",
+        "descActividad": "Actividades inmobiliarias realizadas con bienes propios o arrendados n.c.p.",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "23",
+            "complemento": "25 FRENTE A INDEPENDENCIA EDIFICIO STA. FE"
+        },
+        "telefono": "71403513",
+        "correo": "millotcorporation@gmail.com"
+    },
+    "otrosDocumentos": null,
+    "ventaTercero": null,
+    "cuerpoDocumento": [
+        {
+            "numItem": 1,
+            "tipoItem": 1,
+            "numeroDocumento": null,
+            "cantidad": 1,
+            "codigo": "020",
+            "codTributo": null,
+            "uniMedida": 59,
+            "descripcion": "Adelanto por construcción de Canaletas y Badenes",
+            "precioUni": 5701.5,
+            "montoDescu": 0,
+            "ventaNoSuj": 0,
+            "ventaExenta": 0,
+            "ventaGravada": 5701.5,
+            "tributos": null,
+            "psv": 0,
+            "noGravado": 0,
+            "ivaItem": 655.92
+        }
+    ],
+    "resumen": {
+        "totalNoSuj": 0,
+        "totalExenta": 0,
+        "totalGravada": 5701.5,
+        "subTotalVentas": 5701.5,
+        "descuNoSuj": 0,
+        "descuExenta": 0,
+        "descuGravada": 0,
+        "porcentajeDescuento": 0,
+        "totalDescu": 0,
+        "tributos": null,
+        "subTotal": 5701.5,
+        "ivaRete1": 0,
+        "reteRenta": 0,
+        "montoTotalOperacion": 5701.5,
+        "totalNoGravado": 0,
+        "totalPagar": 5701.5,
+        "totalLetras": "CINCO MIL SETECIENTOS UNO CON 50\/100 USD",
+        "totalIva": 655.92,
+        "saldoFavor": 0,
+        "condicionOperacion": 1,
+        "pagos": [
+            {
+                "codigo": "05",
+                "montoPago": 5701.5,
+                "referencia": null,
+                "plazo": null,
+                "periodo": null
+            }
+        ],
+        "numPagoElectronico": null
+    },
+    "extension": null,
+    "apendice": null,
+    "selloRecibido": "20259324E580E28647D6A831B0E79C0AA9FACJBA"
+}

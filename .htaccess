@@ -1,0 +1,12 @@
+# Evitar que se muestren los índices de directorios
+Options All -Indexes
+
+# Habilitar reescritura de URLs
+RewriteEngine On
+
+# Si el archivo o directorio no existe, redirigir la solicitud a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirigir todas las solicitudes a index.php con el parámetro 'url'
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

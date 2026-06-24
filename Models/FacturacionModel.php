@@ -723,9 +723,9 @@ class FacturacionModel extends Query
         $verificar = "SELECT * FROM dte_encabezado WHERE numeroControl = ?";
         $existe = $this->select($verificar, [$this->numeroControl]);
 
-        if (empty($existe)) {
-            // Si no existe, insertar nuevo DTE
-            $sql = "INSERT INTO dte_encabezado 
+        // if (empty($existe)) {
+        // Si no existe, insertar nuevo DTE
+        $sql = "INSERT INTO dte_encabezado 
                 (numeroControl, versionDte, tipoDte, codigoGeneracion, tipoModelo, tipoOperacion, 
                 tipoContingencia, motivoContingencia, fechaEmision, horaEmision, 
                 receptor, totalNoSujeta, totalExenta, totalGravada, 
@@ -735,67 +735,70 @@ class FacturacionModel extends Query
                 referencia, plazo, periodo, numPagoElectronico, selloRecepcion, ambiente, documentoFirmado, estado, fhProcesamiento, tipoMovimiento, idProyecto, eventoContingenciaId, codigoBanco, codigoCuentaBancaria) 
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-            $datos = array(
-                $this->numeroControl,
-                $this->version,
-                $this->tipoDte,
-                $this->codigoGeneracion,
-                $this->tipoModelo,
-                $this->tipoOperacion,
-                $this->tipoContingencia,
-                $this->motivoContingencia,
-                $this->fechaEmision,
-                $this->horaEmision,
-                $this->receptor,
-                $this->totalNoSujeta,
-                $this->totalExenta,
-                $this->totalGravada,
-                $this->subTotalVentas,
-                $this->descuNoSujeta,
-                $this->descuExenta,
-                $this->descuGravada,
-                $this->porcentajeDescuento,
-                $this->totalDescu,
-                $this->tributosCodigo,
-                $this->tributosValor,
-                $this->subTotal,
-                $this->ivaPerci1,
-                $this->ivaRete1,
-                $this->reteRenta,
-                $this->montoTotalOperacion,
-                $this->totalNoGravado,
-                $this->totalPagar,
-                $this->totalIva,
-                $this->saldoFavor,
-                $this->condicionOperacion,
-                $this->pagoCodigo,
-                $this->pagoMontoPago,
-                $this->referencia,
-                $this->plazo,
-                $this->periodo,
-                $this->numPagoElectronico,
-                $this->selloRecepcion,
-                $this->ambiente,
-                $this->documentoFirmado,
-                $this->estado,
-                $this->fechaProcesamiento,
-                $this->tipoMovimiento,
-                $this->idProyecto,
-                $this->eventoContingencia,
-                $this->codigoBanco,
-                $this->codigoCuentaBancaria,
-            );
+        $datos = array(
+            $this->numeroControl,
+            $this->version,
+            $this->tipoDte,
+            $this->codigoGeneracion,
+            $this->tipoModelo,
+            $this->tipoOperacion,
+            $this->tipoContingencia,
+            $this->motivoContingencia,
+            $this->fechaEmision,
+            $this->horaEmision,
+            $this->receptor,
+            $this->totalNoSujeta,
+            $this->totalExenta,
+            $this->totalGravada,
+            $this->subTotalVentas,
+            $this->descuNoSujeta,
+            $this->descuExenta,
+            $this->descuGravada,
+            $this->porcentajeDescuento,
+            $this->totalDescu,
+            $this->tributosCodigo,
+            $this->tributosValor,
+            $this->subTotal,
+            $this->ivaPerci1,
+            $this->ivaRete1,
+            $this->reteRenta,
+            $this->montoTotalOperacion,
+            $this->totalNoGravado,
+            $this->totalPagar,
+            $this->totalIva,
+            $this->saldoFavor,
+            $this->condicionOperacion,
+            $this->pagoCodigo,
+            $this->pagoMontoPago,
+            $this->referencia,
+            $this->plazo,
+            $this->periodo,
+            $this->numPagoElectronico,
+            $this->selloRecepcion,
+            $this->ambiente,
+            $this->documentoFirmado,
+            $this->estado,
+            $this->fechaProcesamiento,
+            $this->tipoMovimiento,
+            $this->idProyecto,
+            $this->eventoContingencia,
+            $this->codigoBanco,
+            $this->codigoCuentaBancaria,
+        );
 
-            $data = $this->guardar($sql, $datos);
+        $data = $this->guardar($sql, $datos);
+        // $idDte = $this->db->insertID();
 
-            if ($data == 1) {
-                $res = "ok";
-            } else {
-                $res = "error";
-            }
+
+        if ($data == 1) {
+            // $res = "ok";
+            return $this->ultimoId();   // ← ID REAL del dte_encabezado
         } else {
-            $res = "existe";
+            $res = "error";
         }
+        // } else {
+        //     $res = "existe";
+        // }
 
         return $res;
     }
@@ -819,14 +822,15 @@ class FacturacionModel extends Query
         $psv,
         $noGrabado,
         $ivaItem,
-        $descripcionNotaC
+        $descripcionNotaC,
+        $idDte
     ) {
         $sql = "INSERT INTO dte_cuerpo (
                     idNumeroControl, numItem, tipoItem, idNumeroDocumento,
                     cantidad, codigo, codTributo, uniMedida, descripcion,
                     precioUni, montoDescu, ventaNoSuj, ventaExenta,
-                    ventaGrabada, tributos, psv, noGrabado, ivaItem, descripcionNotaC
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+                    ventaGrabada, tributos, psv, noGrabado, ivaItem, descripcionNotaC, id_dte_encabezado
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
 
         $datos = array(
             $numeroControl,
@@ -847,7 +851,8 @@ class FacturacionModel extends Query
             $psv,
             $noGrabado,
             $ivaItem,
-            $descripcionNotaC
+            $descripcionNotaC,
+            $idDte
         );
         $data = $this->guardar($sql, $datos);
         if ($data == 1) {

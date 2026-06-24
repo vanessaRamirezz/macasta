@@ -1,10 +1,10 @@
 <?php
 
-const base_url = "http://macasta.pro/";
-const host = "localhost";
-const user = "tph_gestordeproyectos";
+const base_url = "http://localhost/macasta.pro/";
+const host = "127.0.0.1:3307";
+const user = "root";
 const clave = "111213";
-const bd = "tph_gestordeproyectos";
+const bd = "gestorDeProyectos";
 const charset = "utf8mb4";
 
 // Rutas y variables generales en produccion

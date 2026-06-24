@@ -18,14 +18,16 @@ class ListadosModel extends Query
         }
 
         $sql = "SELECT 
+                e.id,
                 e.numeroControl AS correlativo,
                 e.codigoGeneracion AS codigo,
                 c.nombreCliente AS cliente,
-                e.estado
+                e.estado,
+                DATE_FORMAT(e.fechaEmision, '%d/%m/%Y') AS fecha
             FROM dte_encabezado e
             LEFT JOIN clientes c ON e.receptor = c.codigoCliente
             $searchQuery
-            ORDER BY e.numeroControl DESC
+            ORDER BY e.fechaEmision DESC
             LIMIT $start, $length";
 
         $data = $this->selectAll($sql, $params);
@@ -45,7 +47,7 @@ class ListadosModel extends Query
 
     public function getCcf($start, $length, $search = "")
     {
-        $searchQuery = "WHERE e.tipoDte = '03' AND e.estado IN ('PROCESADO','INVALIDADO', 'PROCESADO EN CONTINGENCIA') AND ambiente = '01'";  // siempre filtramos tipoDte = '01'
+        $searchQuery = "WHERE e.tipoDte = '03' AND e.estado IN ('PROCESADO','INVALIDADO', 'PROCESADO EN CONTINGENCIA') AND ambiente = '00'";  // siempre filtramos tipoDte = '01'
         $params = [];
 
         if (!empty($search)) {
@@ -54,14 +56,16 @@ class ListadosModel extends Query
         }
 
         $sql = "SELECT 
+                e.id,
                 e.numeroControl AS correlativo,
                 e.codigoGeneracion AS codigo,
                 c.nombreCliente AS cliente,
-                e.estado
+                e.estado,
+                DATE_FORMAT(e.fechaEmision, '%d/%m/%Y') AS fecha
             FROM dte_encabezado e
             LEFT JOIN clientes c ON e.receptor = c.codigoCliente
             $searchQuery
-            ORDER BY e.numeroControl DESC
+            ORDER BY e.fechaEmision DESC
             LIMIT $start, $length";
 
         $data = $this->selectAll($sql, $params);
@@ -90,14 +94,16 @@ class ListadosModel extends Query
         }
 
         $sql = "SELECT 
+                e.id,
                 e.numeroControl AS correlativo,
                 e.codigoGeneracion AS codigo,
                 c.nombreCliente AS cliente,
-                e.estado
+                e.estado,
+                DATE_FORMAT(e.fechaEmision, '%d/%m/%Y') AS fecha
             FROM dte_encabezado e
             LEFT JOIN clientes c ON e.receptor = c.codigoCliente
             $searchQuery
-            ORDER BY e.numeroControl DESC
+            ORDER BY e.fechaEmision DESC
             LIMIT $start, $length";
 
         $data = $this->selectAll($sql, $params);
@@ -126,14 +132,16 @@ class ListadosModel extends Query
         }
 
         $sql = "SELECT 
+                e.id,
                 e.numeroControl AS correlativo,
                 e.codigoGeneracion AS codigo,
                 c.nombreCliente AS cliente,
-                e.estado
+                e.estado,
+                DATE_FORMAT(e.fechaEmision, '%d/%m/%Y') AS fecha
             FROM dte_encabezado e
             LEFT JOIN clientes c ON e.receptor = c.codigoCliente
             $searchQuery
-            ORDER BY e.numeroControl DESC
+            ORDER BY e.fechaEmision DESC
             LIMIT $start, $length";
 
         $data = $this->selectAll($sql, $params);
@@ -171,13 +179,14 @@ class ListadosModel extends Query
                         ht.nit AS nitTercero,
                         e.selloRecepcion AS selloRecibido,
                         ht.nombre AS nombreTercero,
-                        c.nombreComercial
+                        c.nombreComercial,
+                        e.id
         FROM dte_encabezado e
         LEFT JOIN modeloFacturacion v ON e.tipoModelo = v.codigo
         LEFT JOIN clientes c ON e.receptor = c.codigoCliente
         LEFT JOIN historialVentaTerceros ht ON e.numeroControl = ht.codigoDeControl
         LEFT JOIN actividadesEconomicas a ON c.codigoActividadEconomica = a.codigo
-        WHERE e.numeroControl = ?';
+        WHERE e.id = ?';
         $datos = array($numeroControl);
         return $this->select($sql, $datos);
     }
@@ -208,7 +217,7 @@ class ListadosModel extends Query
     public function getDTECuerpo(string $numeroControl)
     {
         $sql = 'SELECT * FROM dte_cuerpo
-        WHERE idNumeroControl = ?';
+        WHERE id_dte_encabezado = ?';
         $datos = array($numeroControl);
         return $this->selectAll($sql, $datos);
     }

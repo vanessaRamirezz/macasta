@@ -38,7 +38,7 @@ class Listados extends Controller
         $data = $result['dteFe'];
         $total = $result['total'];
 
-         for ($i = 0; $i < count($data); $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             // Estado con color
             $estado = $data[$i]['estado'];
             $clase = '';
@@ -53,15 +53,15 @@ class Listados extends Controller
             // Botón PDF + JSON
             $data[$i]['acciones'] =
                 '<div class="text-center">
-                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-file-pdf"></i></button>
-                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-code"></i></button>
-                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-envelope"></i></button>
+                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-file-pdf"></i></button>
+                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-code"></i></button>
+                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-envelope"></i></button>
                 </div>';
 
             // Botón invalidar
             $data[$i]['invalidar'] =
                 '<div class="text-center">
-                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-solid fa-ban"></i></button>
+                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-solid fa-ban"></i></button>
                 </div>';
         }
 
@@ -93,7 +93,7 @@ class Listados extends Controller
         $data = $result['dteCcf'];
         $total = $result['total'];
 
-         for ($i = 0; $i < count($data); $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             // Estado con color
             $estado = $data[$i]['estado'];
             $clase = '';
@@ -108,15 +108,15 @@ class Listados extends Controller
             // Botón PDF + JSON
             $data[$i]['acciones'] =
                 '<div class="text-center">
-                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-file-pdf"></i></button>
-                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-code"></i></button>
-                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-envelope"></i></button>
+                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-file-pdf"></i></button>
+                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-code"></i></button>
+                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-envelope"></i></button>
                 </div>';
 
             // Botón invalidar
             $data[$i]['invalidar'] =
                 '<div class="text-center">
-                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-solid fa-ban"></i></button>
+                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-solid fa-ban"></i></button>
                 </div>';
         }
 
@@ -163,15 +163,15 @@ class Listados extends Controller
             // Botón PDF + JSON
             $data[$i]['acciones'] =
                 '<div class="text-center">
-                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-file-pdf"></i></button>
-                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-code"></i></button>
-                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-envelope"></i></button>
+                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-file-pdf"></i></button>
+                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-code"></i></button>
+                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-envelope"></i></button>
                 </div>';
 
             // Botón invalidar
             $data[$i]['invalidar'] =
                 '<div class="text-center">
-                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-solid fa-ban"></i></button>
+                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-solid fa-ban"></i></button>
                 </div>';
         }
 
@@ -186,7 +186,7 @@ class Listados extends Controller
         $this->sendJsonResponse($result);
     }
 
-public function listarFse()
+    public function listarFse()
     {
         $start = $_POST['start']; // Índice de inicio
         $length = $_POST['length']; // Número de registros por página
@@ -218,15 +218,15 @@ public function listarFse()
             // Botón PDF + JSON
             $data[$i]['acciones'] =
                 '<div class="text-center">
-                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-file-pdf"></i></button>
-                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-code"></i></button>
-                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-envelope"></i></button>
+                    <button class="btn btn-editar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-file-pdf"></i></button>
+                    <button class="btn btn-json" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-code"></i></button>
+                    <button class="btn btn-enviar-correo" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-envelope"></i></button>
                 </div>';
 
             // Botón invalidar
             $data[$i]['invalidar'] =
                 '<div class="text-center">
-                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["correlativo"] . '"><i class="fas fa-solid fa-ban"></i></button>
+                    <button class="btn btn-invalidar" type="button" data-id="' . $data[$i]["id"] . '"><i class="fas fa-solid fa-ban"></i></button>
                 </div>';
         }
 
@@ -240,7 +240,7 @@ public function listarFse()
 
         $this->sendJsonResponse($result);
     }
-    
+
 
     public function generarPdfFe($numeroControl, $retornarRuta = false)
     {
@@ -932,7 +932,7 @@ public function listarFse()
             'selloRecibido' => $datos['selloRecibido']
         ];
 
-       if ($retornarRuta) {
+        if ($retornarRuta) {
             $nombreSeguro = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', 'FACTURA_N_' . $numeroControl);
             $rutaAbsoluta = realpath(__DIR__ . '/../temp') . '/' . $nombreSeguro . '.json';
 
@@ -947,7 +947,7 @@ public function listarFse()
     }
 
 
-     public function generarPdfCcf($numeroControl, $retornarRuta = false)
+    public function generarPdfCcf($numeroControl, $retornarRuta = false)
     {
         require('Libraries/tcpdf/tcpdf.php');
 
@@ -2803,7 +2803,7 @@ public function listarFse()
             exit;
         }
     }
-    
+
     private function centrarCelda($pdf, $anchoCelda, $y, $texto, $fontSize = 8, $estilo = '')
     {
         $pageWidth = 216;
@@ -2822,7 +2822,7 @@ public function listarFse()
         $pdf->SetFont('helvetica', '', 6);
         $pdf->MultiCell($anchoValor, $alto, $valor, 0, 'L', false, 1); // valor con salto de línea automático
     }
-    
+
     // evento de invalidacion
     public function seleccionarTipoI()
     {
@@ -2846,6 +2846,7 @@ public function listarFse()
             $this->model->iniciarTransaccion();
             // Traer los datos del modelo (como lo haces en generarPdfFe)
             $facturacion = new Facturacion;
+            $idFacturaInvalidar = $_POST['idFacturaInvalidar'];
             $numeroControl = $_POST['numeroControl'];
             $tipoInvalidacion = isset($_POST['selectTipoI']) ? $_POST['selectTipoI'] : null;
             $motivoInvalidacion = $_POST['motInvalidacion'];
@@ -2853,7 +2854,7 @@ public function listarFse()
             $datosFactura = $this->facturacionModel->datosFactura();
             $codigoGeneracion = $facturacion->codigoGeneracion();
             $empresa = $this->model->getEmpresa();
-            $datos = $this->model->datosFe($numeroControl);
+            $datos = $this->model->datosFe($idFacturaInvalidar);
             $codigoUsuario = trim($_SESSION['codigoUsuario']);
             $nombreUsuario = trim($_SESSION['nombreCompleto']);
             $tipoIdentifiUsuario = trim($_SESSION['tipoIdentificacion']);
@@ -2973,7 +2974,7 @@ public function listarFse()
             }
 
 
-	$empresaId = 'MacastA01';
+            $empresaId = 'MacastA01';
             $jsonFirmado = $facturacion->firmarJson($estructuraInvalidar, $empresa['nit'], $empresaId);
             if (!$jsonFirmado) {
                 throw new Exception("Error al firmar el JSON o generarlo");
@@ -3051,7 +3052,7 @@ public function listarFse()
             ]);
         }
     }
-    
+
     // enviar correo
     public function generarEnviar($numeroControl)
     {
@@ -3059,10 +3060,13 @@ public function listarFse()
         $this->sendJsonResponse($data);
     }
 
-        public function enviarFacturaPorCorreo()
+    public function enviarFacturaPorCorreo()
     {
         $emailCliente = $_POST['correoE'];
         $numeroControl = $_POST['control'];
+        $idFactura = $_POST['idFactura'];
+        // var_dump($idFactura);
+        // exit;
         // Generar archivos temporales
 
         $tipoDte = $_POST['dte'];
@@ -3070,20 +3074,20 @@ public function listarFse()
         $jsonRelativo = '';
         switch ($tipoDte) {
             case '01':
-                $pdfRelativo = $this->generarPdfFe($numeroControl, true);
-                $jsonRelativo = $this->generarPdfFeJSON($numeroControl, true);
+                $pdfRelativo = $this->generarPdfFe($idFactura, true);
+                $jsonRelativo = $this->generarPdfFeJSON($idFactura, true);
                 break;
             case '03':
-                $pdfRelativo = $this->generarPdfCcf($numeroControl, true);
-                $jsonRelativo = $this->generarPdfCcfJSON($numeroControl, true);
+                $pdfRelativo = $this->generarPdfCcf($idFactura, true);
+                $jsonRelativo = $this->generarPdfCcfJSON($idFactura, true);
                 break;
             case '05':
-                $pdfRelativo = $this->generarPdfNc($numeroControl, true);
-                $jsonRelativo = $this->generarPdfNcfJSON($numeroControl, true);
+                $pdfRelativo = $this->generarPdfNc($idFactura, true);
+                $jsonRelativo = $this->generarPdfNcfJSON($idFactura, true);
                 break;
             case '14':
-                $pdfRelativo = $this->generarPdfFse($numeroControl, true);
-                $jsonRelativo = $this->generarPdfFseJSON($numeroControl, true);
+                $pdfRelativo = $this->generarPdfFse($idFactura, true);
+                $jsonRelativo = $this->generarPdfFseJSON($idFactura, true);
                 break;
             default:
                 # code...

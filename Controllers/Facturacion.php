@@ -777,7 +777,7 @@ class Facturacion extends Controller
 
 
 
-    public function registrarCuerpoDocumento($cuerpoDocumento, $identificacion, $descripcionNotasPorItem = [])
+    public function registrarCuerpoDocumento($cuerpoDocumento, $identificacion, $descripcionNotasPorItem = [], $idDte)
     {
         foreach ($cuerpoDocumento as $row) {
             $descripcionNota = $descripcionNotasPorItem[$row['numItem']] ?? null;
@@ -806,7 +806,8 @@ class Facturacion extends Controller
                 $row['psv'] ?? null,
                 $row['noGravado'] ?? null,
                 $row['ivaItem'] ?? null,
-                $descripcionNota ?? null
+                $descripcionNota ?? null,
+                $idDte ?? null
             );
 
             if ($resCuerpo !== "ok") {
@@ -2019,7 +2020,7 @@ if (!$jsonFirmado) {
                 }
 
 
-                $res = $this->model->registrarDTE(
+                $idDte =  $this->model->registrarDTE(
                     $identificacion->numeroControl,
                     $identificacion->version,
                     $identificacion->tipoDte,
@@ -2070,14 +2071,17 @@ if (!$jsonFirmado) {
                     $codigoCuentaBancaria ?? null
                 );
 
-                if ($res !== "ok") {
-                    throw new Exception("Error al registrar el encabezado del DTE");
+                // if ($idDte !== "ok") {
+                //     throw new Exception("Error al registrar el encabezado del DTE");
+                // }
+                if (!$idDte) {
+                    throw new Exception("Error al registrar encabezado DTE");
                 }
 
                 if (!empty($descripcionNotasPorItem)) {
-                    $this->registrarCuerpoDocumento($cuerpoDocumento, $identificacion, $descripcionNotasPorItem);
+                    $this->registrarCuerpoDocumento($cuerpoDocumento, $identificacion, $descripcionNotasPorItem, $idDte);
                 } else {
-                    $this->registrarCuerpoDocumento($cuerpoDocumento, $identificacion);
+                    $this->registrarCuerpoDocumento($cuerpoDocumento, $identificacion, null, $idDte);
                 }
                 $this->registrarDocumentosRelacionados($documentoRelacionado, $identificacion->numeroControl);
                 $this->registrarDocumentosAsociados($otrosDocumentosAsociados, $identificacion->numeroControl);
@@ -2167,7 +2171,7 @@ if (!$jsonFirmado) {
                         // o incluso registrar en el log que no se aplicó ningún cambio.
                     }
 
-                    $this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte);
+                    $this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte, $idDte);
                     $this->sendJsonResponse([
                         'status' => 'contingencia',
                         'message' => 'DTE generado en contingencia. Firmado y almacenado. Esperando envío por lote.',
@@ -2305,7 +2309,7 @@ if (!$jsonFirmado) {
                         }
 
 
-			$this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte);
+                        $this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte, $idDte);
                         $this->sendJsonResponse([
                             'status' => 'success',
                             'data' => $datosGenerados,
@@ -2400,7 +2404,7 @@ if (!$jsonFirmado) {
                             }
 
 
-				$this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte);
+                            $this->enviarFacturaPorCorreo($receptor->correo, $identificacion->numeroControl, $tipoDte, $idDte);
                             $this->sendJsonResponse([
                                 'status' => 'success',
                                 'data' => $datosGenerados,
@@ -4002,8 +4006,8 @@ if (!$jsonFirmado) {
         session_destroy();
         header("location: " . base_url);
     }
-    
-    public function enviarFacturaPorCorreo($emailCliente, $numeroControl, $tipoDte)
+
+    public function enviarFacturaPorCorreo($emailCliente, $numeroControl, $tipoDte, $idDte)
     {
         $listados = new Listados;
 
@@ -4013,15 +4017,15 @@ if (!$jsonFirmado) {
 
         switch ($tipoDte) {
             case '01':
-                $pdfRelativo = $listados->generarPdfFe($numeroControl, true);
-                $jsonRelativo = $listados->generarPdfFeJSON($numeroControl, true);
+                $pdfRelativo = $listados->generarPdfFe($idDte, true);
+                $jsonRelativo = $listados->generarPdfFeJSON($idDte, true);
                 break;
             case '03':
-                $pdfRelativo = $listados->generarPdfCcf($numeroControl, true);
-                $jsonRelativo = $listados->generarPdfCcfJSON($numeroControl, true);
+                $pdfRelativo = $listados->generarPdfCcf($idDte, true);
+                $jsonRelativo = $listados->generarPdfCcfJSON($idDte, true);
             case '05':
-                $pdfRelativo = $listados->generarPdfNc($numeroControl, true);
-                $jsonRelativo = $listados->generarPdfNcfJSON($numeroControl, true);
+                $pdfRelativo = $listados->generarPdfNc($idDte, true);
+                $jsonRelativo = $listados->generarPdfNcfJSON($idDte, true);
                 break;
             default:
                 # code...

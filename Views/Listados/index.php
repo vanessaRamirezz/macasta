@@ -39,11 +39,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="tblFacturas" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm" id="tblFacturas" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Numero Control</th>
                                 <th>Codigo Generación</th>
+                                <th>Fecha Generción</th>
                                 <th>Cliente</th>
                                 <th>Estado</th>
                                 <th>Invalidar</th>
@@ -75,11 +76,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="tblComprobatesCF" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm" id="tblComprobatesCF" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Numero Control</th>
                                 <th>Codigo Generación</th>
+                                <th>Fecha Generción</th>
                                 <th>Cliente</th>
                                 <th>Estado</th>
                                 <th>Invalidar</th>
@@ -111,11 +113,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="tblNotaCredito" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm" id="tblNotaCredito" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Numero Control</th>
                                 <th>Codigo Generación</th>
+                                <th>Fecha Generción</th>
                                 <th>Cliente</th>
                                 <th>Estado</th>
                                 <th>Invalidar</th>
@@ -147,11 +150,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="tblSujetoExcluido" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm" id="tblSujetoExcluido" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Numero Control</th>
                                 <th>Codigo Generación</th>
+                                <th>Fecha Generción</th>
                                 <th>Cliente</th>
                                 <th>Estado</th>
                                 <th>Invalidar</th>
@@ -174,6 +178,8 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="frmInvalidar" class="bold-letra">
+                        <input type="hidden" id="idFacturaInvalidar" name="idFacturaInvalidar">
+
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
@@ -257,6 +263,7 @@
                 <div class="modal-body">
                     <form method="POST" id="frmCorreo" class="bold-letra">
                         <div class="mb-3">
+                            <input type="hidden" id="idFactura" name="idFactura">
 
                             <div class="col-md-8">
                                 <label for="cliente">Cliente</label>

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fe = configurarTabla('#tblFacturas', "Listados/listarFe", [
             { 'data': 'correlativo' },
             { 'data': 'codigo' },
+            { 'data': 'fecha' },
             { 'data': 'cliente' },
             { 'data': 'estado' },
             { 'data': 'invalidar' },
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ccf = configurarTabla('#tblComprobatesCF', "Listados/listarCcf", [
             { 'data': 'correlativo' },
             { 'data': 'codigo' },
+            { 'data': 'fecha' },
             { 'data': 'cliente' },
             { 'data': 'estado' },
             { 'data': 'invalidar' },
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nc = configurarTabla('#tblNotaCredito', "Listados/listarNc", [
             { 'data': 'correlativo' },
             { 'data': 'codigo' },
+            { 'data': 'fecha' },
             { 'data': 'cliente' },
             { 'data': 'estado' },
             { 'data': 'invalidar' },
@@ -48,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fse = configurarTabla('#tblSujetoExcluido', "Listados/listarFse", [
             { 'data': 'correlativo' },
             { 'data': 'codigo' },
+            { 'data': 'fecha' },
             { 'data': 'cliente' },
             { 'data': 'estado' },
             { 'data': 'invalidar' },
@@ -263,6 +267,7 @@ function generarEventoInvalidar(numeroControl) {
         document.getElementById("numeroControl").value = res.numeroControl;
         document.getElementById("codigoGen").value = res.codigoGeneracion;
         document.getElementById("selloRecepcion").value = res.selloRecepcion;
+        document.getElementById("idFacturaInvalidar").value = res.id;
         $("#invalidarEvento").modal({
             backdrop: 'static',
             keyboard: false
@@ -331,6 +336,7 @@ function generarEventoCorreo(numeroControl) {
         document.getElementById("correoE").value = res.correo;
         document.getElementById("control").value = res.numeroControl;
         document.getElementById("dte").value = res.tipoDte;
+        document.getElementById("idFactura").value = res.id;
         $("#enviarCorreoModal").modal({
             backdrop: 'static',
             keyboard: false
